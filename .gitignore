@@ -1,8 +1,29 @@
-.node_modules/
-.venv venv/
+# Dependencies
+node_modules/
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+
+# Environment variables
 .env
-null
-data
-.idea
-.py
+
+# Python cache
 __pycache__/
+*.pyc
+.pytest_cache/
+
+# Data
+data/
+
+# IDE
+.idea/
+
+# Claude Code
+.claude/
+
+# Windows artifacts
+nul
+
+# Docker env (if sensitive)
+.env.docker
