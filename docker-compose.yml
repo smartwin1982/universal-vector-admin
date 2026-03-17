@@ -1,0 +1,54 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - lancedb_data:/app/data/lancedb
+      - model_cache:/root/.cache
+    env_file:
+      - .env.docker
+    environment:
+      - LANCEDB_URI=/app/data/lancedb
+      - CORS_ORIGINS=["http://localhost:3000","http://frontend:3000"]
+    networks:
+      - uva-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=http://localhost:8000
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - uva-network
+    restart: unless-stopped
+
+  # Optional: Ollama for local LLM
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   networks:
+  #     - uva-network
+  #   restart: unless-stopped
+
+volumes:
+  lancedb_data:
+  model_cache:
+  # ollama_data:
+
+networks:
+  uva-network:
+    driver: bridge

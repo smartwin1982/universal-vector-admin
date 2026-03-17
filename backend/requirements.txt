@@ -1,0 +1,42 @@
+# FastAPI 核心
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.1
+python-multipart==0.0.20
+
+# 向量資料庫 SDK
+# chromadb==0.6.3  # 需要 C++ Build Tools，暫時跳過
+lancedb>=0.4.0
+# pymilvus==2.5.0  # Milvus (需要時取消註解)
+# pinecone==5.4.2  # Pinecone (需要時取消註解)
+# qdrant-client==1.13.0  # Qdrant (需要時取消註解)
+
+# Embedding 模型
+sentence-transformers>=2.2.0
+
+# LLM
+google-generativeai>=0.8.0
+
+# 文件處理
+PyMuPDF>=1.24.0
+python-docx>=1.1.0
+beautifulsoup4>=4.12.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# 認證（可選）
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# 工具
+python-dotenv==1.0.1
+httpx==0.28.1
+aiofiles==24.1.0
+
+# Rate limiting (optional)
+slowapi>=0.1.9
+
+# 開發工具
+pytest==8.3.4
+pytest-asyncio==0.25.2
